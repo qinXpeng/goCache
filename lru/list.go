@@ -40,10 +40,30 @@ func (list *Link) Push_front(val interface{}) {
 	list.push_front(rt)
 }
 
-// insert rhs, lhs->rhs
+// link lhs->rhs
 func (list *Link) linkNode(lhs, rhs *ListNode) {
 	lhs.next = rhs
 	rhs.prev = lhs
+}
+
+// insert node before rt
+func (list *Link) InsertBefore(rt, node *ListNode) {
+	if rt == list.Front_pointer() {
+		list.push_front(node)
+	} else {
+		list.linkNode(rt.prev, node)
+		list.linkNode(node, rt)
+	}
+}
+
+// insert node after rt
+func (list *Link) InsertAfter(rt, node *ListNode) {
+	if rt == list.Back_pointer() {
+		list.push_back(node)
+	} else {
+		list.linkNode(node, rt.next)
+		list.linkNode(rt, node)
+	}
 }
 func (list *Link) push_back(rt *ListNode) {
 	list.linkNode(list.Back_pointer(), rt)
