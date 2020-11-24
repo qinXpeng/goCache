@@ -91,3 +91,15 @@ func (list *Link) MoveToBack(rt *ListNode) {
 	list.remove(rt)
 	list.push_back(rt)
 }
+func (list *Link) Next(rt *ListNode) *ListNode {
+	if rt == list.Back_pointer() {
+		return nil
+	}
+	return rt.next
+}
+func (list *Link) Prev(rt *ListNode) *ListNode {
+	if rt == list.Front_pointer() {
+		return nil
+	}
+	return rt.prev
+}
